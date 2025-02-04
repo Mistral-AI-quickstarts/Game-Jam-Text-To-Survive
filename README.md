@@ -15,6 +15,8 @@ An 2D game built with p5.js and Mistral AI API. The game revolves around a girlf
 
 This game was built for the Mistral AI Gamejam Hackathon 2025 in Paris.
 
+It combines basic 2D game mechanics with a large language model to create a unique and engaging experience.
+
 ## Technical Stack
 
 ### Backend
