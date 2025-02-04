@@ -27,17 +27,8 @@ It combines basic 2D game mechanics with a large language model to create a uniq
 - **Vanilla JavaScript**: Core game logic and user interactions
 - **P5.js**: Creative coding library used for visual effects and animations
 
-### Docker
 
-# Build the image
-
-docker build -t p5js-game .
-
-# Run the container
-
-docker run -p 8000:8000 p5js-game
-
-### API Key Setup
+## API Key Setup
 
 To run this game, you'll need a Mistral AI API key. You can obtain one by:
 
@@ -46,6 +37,27 @@ To run this game, you'll need a Mistral AI API key. You can obtain one by:
 3. Generating an API key in your dashboard
 
 Once you have your API key, you can set it as an environment variable:
+
+## Run locally
+
+```bash
+python app.py
+```
+
+
+## Deployment with Docker
+
+### Build the image
+
+```bash
+docker build -t p5js-game .
+```
+
+### Run the container
+
+```bash
+docker run -p 8000:8000 p5js-game
+```
 
 
 ## Authors
