@@ -48,10 +48,10 @@ To run this game, you'll need a Mistral AI API key. You can obtain one by:
 2. Creating an account
 3. Generating an API key in your dashboard
 
-Once you have your API key, you can set it as an environment variable:
+Once you have your API key, you can set it as an environment variable:  
 
-## Run locally
-
+```bash
+export MISTRAL_API_KEY=<your_api_key>
 ```bash
 python app.py
 ```
