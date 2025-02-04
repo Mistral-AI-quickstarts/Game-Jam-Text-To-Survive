@@ -1,0 +1,494 @@
+@font-face {
+  font-family: "HorrorBrush";
+  src: url("/static/assets/fonts/horrorbrush.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  opacity: 0.98;
+}
+body {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.background-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.blood {
+  position: absolute;
+}
+
+.blood-top-left {
+  top: 0;
+  left: 0;
+  width: 350px;
+  opacity: 50%;
+}
+
+.blood-bottom-right {
+  bottom: 0;
+  right: 0;
+  width: 250px;
+  position: absolute;
+  bottom: -120px;
+  right: -50px;
+  opacity: 40%;
+}
+
+.blood-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  margin: 20px 20px 0px 0px;
+  transform: rotate(30deg);
+}
+
+.splatter {
+  position: absolute;
+  opacity: 60%;
+  bottom: 240px;
+  left: 30%;
+  transform: translateX(-50%);
+  transform: rotate(20deg);
+  width: 400px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  z-index: 1;
+}
+
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: flicker 4s linear infinite;
+}
+
+.logo img {
+  width: 400px;
+  height: auto;
+}
+
+.subtitle {
+  font-family: "HorrorBrush", cursive;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.menu::after {
+  content: "";
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(
+    circle,
+    rgba(155, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.menu-item {
+  font-family: "HorrorBrush", cursive;
+  font-size: 48px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.new-game {
+  color: #9b0000;
+}
+
+.menu-item:hover {
+  color: #9b0000;
+}
+
+.how-to-play:hover {
+  color: #9b0000;
+}
+
+.level-maker:hover {
+  color: #9b0000;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  10% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.4;
+  }
+  16% {
+    opacity: 1;
+  }
+  17% {
+    opacity: 0.4;
+  }
+  18% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+  }
+  36% {
+    opacity: 0.3;
+  }
+  37% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 0.5;
+  }
+  39% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0.7;
+  }
+  52% {
+    opacity: 1;
+  }
+  53% {
+    opacity: 0.4;
+  }
+  54% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  86% {
+    opacity: 0.6;
+  }
+  87% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 0.4;
+  }
+  89% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.led-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 0, 0, 0.4) 20%,
+    rgba(255, 0, 0, 0.8) 35%,
+    rgba(255, 50, 50, 1) 50%,
+    rgba(255, 0, 0, 0.8) 65%,
+    rgba(255, 0, 0, 0.4) 80%,
+    transparent 100%
+  );
+  z-index: 100;
+  animation: ledFlicker 4s infinite, ledPulse 10s infinite;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7), 0 0 35px rgba(255, 0, 0, 0.5),
+    0 0 50px rgba(255, 0, 0, 0.4), 0 0 70px rgba(155, 0, 0, 0.3);
+  filter: blur(0.6px);
+}
+
+.light-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 0, 0, 0.3) 0%,
+    rgba(255, 0, 0, 0.2) 20%,
+    rgba(255, 0, 0, 0.15) 30%,
+    rgba(155, 0, 0, 0.08) 60%,
+    transparent 100%
+  );
+  animation: beamFlicker 4s infinite;
+  pointer-events: none;
+  filter: blur(2px);
+}
+
+@keyframes ledFlicker {
+  0% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.3;
+  }
+  97% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.2;
+  }
+  99% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ledPulse {
+  0% {
+    filter: brightness(1) blur(0.6px);
+  }
+  50% {
+    filter: brightness(1.3) blur(0.4px);
+  }
+  100% {
+    filter: brightness(1) blur(0.6px);
+  }
+}
+
+@keyframes beamFlicker {
+  0% {
+    opacity: 0.7;
+  }
+  95% {
+    opacity: 0.7;
+  }
+  96% {
+    opacity: 0.2;
+  }
+  97% {
+    opacity: 0.7;
+  }
+  98% {
+    opacity: 0.1;
+  }
+  99% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* How to Play Page Styles */
+.content {
+  color: #fff;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.content h1 {
+  font-family: "HorrorBrush", cursive;
+  font-size: 64px;
+  color: #9b0000;
+  position: relative;
+  margin-bottom: 30px;
+  letter-spacing: 4px;
+}
+
+.game-description p {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.back-button {
+  font-family: "HorrorBrush", cursive;
+  font-size: 36px;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.back-button:hover {
+  color: #9b0000;
+}
+
+.character {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: characterFlicker 6s infinite;
+}
+
+.character img {
+  width: 400px;
+  height: auto;
+}
+
+@keyframes characterFlicker {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  42% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  43% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+  44% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  45% {
+    opacity: 0.6;
+    filter: brightness(1.3);
+  }
+  46% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  47% {
+    opacity: 0.2;
+    filter: brightness(1.5);
+  }
+  48% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  49% {
+    opacity: 0.4;
+    filter: brightness(1.2);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  80% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  81% {
+    opacity: 0.5;
+    filter: brightness(1.3);
+  }
+  82% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+/* Modifier les styles pour le bouton son */
+.sound-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.sound-button:hover {
+  transform: scale(1.1);
+}
+
+.sound-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gf-image {
+  width: 400px;
+  height: auto;
+  margin-top: 50px;
+}
+
+.next-button {
+  font-family: "HorrorBrush", cursive;
+  font-size: 36px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 50px;
+  background-color: rgba(155, 0, 0, 0.3);
+  padding: 10px 30px;
+  border: 2px solid #9b0000;
+  border-radius: 5px;
+}
+
+.next-button:hover {
+  color: #9b0000;
+  background-color: rgba(155, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(155, 0, 0, 0.5);
+}

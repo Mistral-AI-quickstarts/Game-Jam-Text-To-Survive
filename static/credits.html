@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credits - Text to Survive</title>
+    <link rel="stylesheet" href="assets/css/index-style.css" />
+    <style>
+      .credits-container {
+        text-align: center;
+        color: #fff;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 50vh;
+      }
+      .credits-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .credits-list li {
+        margin: 0;
+      }
+      .credits-list a {
+        font-family: "HorrorBrush", cursive;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 36px;
+        letter-spacing: 2px;
+      }
+      .credits-list a:hover {
+        color: #9b0000;
+        transform: scale(1.1);
+        text-shadow: 0 0 10px rgba(155, 0, 0, 0.5);
+      }
+      .back-button {
+        margin-top: 4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="led-bar">
+      <div class="light-beam"></div>
+    </div>
+    <div class="background-elements">
+      <img src="assets/img/blood-2.png" alt="" class="blood blood-top-left" />
+      <img src="assets/img/help.png" alt="" class="blood blood-top-right" />
+      <img src="assets/img/splatter.png" alt="" class="blood splatter" />
+      <img src="assets/img/hand.png" alt="" class="blood blood-bottom-right" />
+    </div>
+
+    <main>
+      
+
+      <div class="credits-container">
+        <ul class="credits-list">
+          <li><a href="https://www.linkedin.com/in/johnny-moacdieh-935687b3/" target="_blank">Johnny Moacdieh</a></li>
+          <li><a href="https://www.linkedin.com/in/carlfarra/" target="_blank">Carl Farra</a></li>
+          <li><a href="https://www.linkedin.com/in/remikaito/" target="_blank">Remi Kaito</a></li>
+          <li><a href="https://www.linkedin.com/in/cosimotaiuti/" target="_blank">Cosimo Taiuti</a></li>
+          <li><a href="https://www.linkedin.com/in/josephpollack/" target="_blank">Joseph Pollack</a></li>
+          <li><a href="https://www.linkedin.com/in/luca-teodorescu/" target="_blank">Luca Teodorescu</a></li>
+        </ul>
+        <div class="back-button">
+          <a href="index.html" class="menu-item">BACK TO MENU</a>
+        </div>
+      </div>
+    </main>
+
+    <div class="sound-button" onclick="toggleSound()">
+      <img src="/static/assets/img/sondon.png" alt="Sound control" id="soundIcon" />
+    </div>
+
+    <audio id="bgMusic" loop>
+      <source src="/static/assets/sounds/music.mp3" type="audio/mp3" />
+    </audio>
+
+    <script>
+      let isSoundOn = true;
+      const soundIcon = document.getElementById("soundIcon");
+      const bgMusic = document.getElementById("bgMusic");
+
+      window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("isSoundOn") === null) {
+          localStorage.setItem("isSoundOn", "true");
+        } else {
+          isSoundOn = localStorage.getItem("isSoundOn") === "true";
+        }
+        updateSoundIcon();
+        try {
+          bgMusic.currentTime = 10;
+          if (isSoundOn) {
+            bgMusic.play().catch((error) => {
+              console.log("Autoplay prevented:", error);
+              isSoundOn = false;
+              localStorage.setItem("isSoundOn", "false");
+              updateSoundIcon();
+            });
+          }
+        } catch (error) {
+          console.error("Error playing audio:", error);
+        }
+      });
+
+      function toggleSound() {
+        isSoundOn = !isSoundOn;
+        localStorage.setItem("isSoundOn", isSoundOn.toString());
+        if (isSoundOn) {
+          if (bgMusic.currentTime < 10) {
+            bgMusic.currentTime = 10;
+          }
+          bgMusic.play();
+        } else {
+          bgMusic.pause();
+        }
+        updateSoundIcon();
+      }
+
+      function updateSoundIcon() {
+        soundIcon.src = isSoundOn
+          ? "/static/assets/img/sondon.png"
+          : "/static/assets/img/soundoff.png";
+      }
+    </script>
+  </body>
+</html> 

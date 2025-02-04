@@ -1,0 +1,236 @@
+@font-face {
+  font-family: "HorrorBrush";
+  src: url("/static/assets/fonts/horrorbrush.ttf") format("truetype");
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.202);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: block;
+}
+
+.popup-loser {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  background-color: #141313;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  display: none;
+  overflow: hidden;
+}
+
+.popup-loser .clown {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 300px;
+  height: auto;
+  z-index: 1002;
+}
+
+.popup-loser .blood-top {
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 300px;
+  height: auto;
+  z-index: 1002;
+}
+
+.popup-loser .blood-bottom {
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 300px;
+  height: auto;
+  transform: rotate(180deg);
+  z-index: 1001;
+}
+
+.popup-loser .title {
+  position: absolute;
+  left: 40%;
+  transform: translateX(-50%);
+  font-size: 120px;
+  font-weight: bold;
+  color: #9b0000;
+  text-shadow: 10px 10px 4px #4d0000;
+  font-family: "HorrorBrush", cursive;
+  z-index: 1003;
+}
+
+.popup-loser .title-glow {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(155, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0) 90%
+  );
+  z-index: 1002;
+  pointer-events: none;
+}
+
+.popup-loser .play-again {
+  position: absolute;
+  bottom: 130px;
+  left: 40%;
+  transform: translateX(-50%);
+  padding: 15px 40px;
+  min-width: 230px;
+  font-size: 42px;
+  font-family: "HorrorBrush", cursive;
+  color: #ffffff;
+  background-color: #9b0000;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(155, 0, 0, 0.4);
+  z-index: 1003;
+  letter-spacing: 2px;
+  line-height: 1;
+  white-space: nowrap;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-loser .play-again:hover {
+  background-color: #cc0000;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 8px 20px rgba(155, 0, 0, 0.6);
+}
+
+/* Popup Winner */
+.popup-winner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  display: block;
+  overflow: hidden;
+  background-image: url("/static/assets/img/popup/background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.popup-winner .win-text {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: auto;
+  z-index: 1003;
+}
+
+.popup-winner .fuck {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 350px;
+  height: auto;
+  z-index: 1004;
+}
+
+.popup-winner .stars1 {
+  position: absolute;
+  right: 40px;
+  left: 80%;
+  top: 0%;
+  width: 200px;
+  height: auto;
+  z-index: 1002;
+}
+
+.popup-winner .stars2 {
+  position: absolute;
+  bottom: -10px;
+  right: 40px;
+  width: 500px;
+  height: auto;
+  z-index: 1002;
+}
+
+.popup-winner .play-again {
+  position: absolute;
+  bottom: 40px;
+  left: 27%;
+  top: auto;
+  transform: translateX(-50%);
+  padding: 20px 60px;
+  min-width: 350px;
+  height: 80px;
+  font-size: 30px;
+  font-family: "Comic Sans MS", cursive;
+  color: #ffffff;
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  border: 3px solid #fff;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(255, 105, 180, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.4);
+  z-index: 1003;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: sparkle 2s infinite;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.popup-winner .play-again:hover {
+  transform: translateX(-50%) scale(1.05);
+  background: linear-gradient(45deg, #ff1493, #ff69b4);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.8),
+    inset 0 0 30px rgba(255, 255, 255, 0.6);
+  letter-spacing: 3px;
+}
+
+.popup-winner .play-again::before {
+  content: "✨";
+  position: absolute;
+  left: 25px;
+}
+
+.popup-winner .play-again::after {
+  content: "✨";
+  position: absolute;
+  right: 25px;
+}
+
+@keyframes sparkle {
+  0% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff69b4;
+  }
+  50% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1493;
+  }
+  100% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff69b4;
+  }
+}

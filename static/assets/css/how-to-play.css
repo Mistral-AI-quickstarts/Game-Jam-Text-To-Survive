@@ -1,0 +1,431 @@
+/* Styles généraux pour toutes les pages How to Play */
+.content {
+  color: #fff;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+* {
+  opacity: 0.98;
+}
+.content h1 {
+  font-family: "HorrorBrush", cursive;
+  font-size: 64px;
+  color: #9b0000;
+  position: relative;
+  margin-bottom: 30px;
+  letter-spacing: 4px;
+}
+
+/* Styles pour la première page */
+.game-description p {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.gf-image {
+  width: 400px;
+  height: auto;
+  margin-top: 50px;
+}
+
+/* Styles pour la deuxième page */
+.objects-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin: 50px 0 30px 0;
+  width: 100%;
+}
+
+.object-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.object-title {
+  font-family: "HorrorBrush", cursive;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.sub-text {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Styles pour les images tutorielles */
+.tutorial-image {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+/* Styles de navigation */
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+}
+
+.navigation-buttons .back-button,
+.navigation-buttons .next-button {
+  display: inline-block;
+  font-family: "HorrorBrush", cursive;
+  font-size: 36px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background-color: rgba(155, 0, 0, 0.3);
+  padding: 10px 30px;
+  border: 2px solid #9b0000;
+  border-radius: 5px;
+  line-height: 1;
+  margin: 0;
+}
+
+.navigation-buttons .back-button {
+  position: static;
+  transform: none;
+  bottom: auto;
+  left: auto;
+}
+
+.navigation-buttons .next-button:hover,
+.navigation-buttons .back-button:hover {
+  color: #9b0000;
+  background-color: rgba(155, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(155, 0, 0, 0.5);
+}
+
+/* Style spécifique pour le bouton Back to Menu */
+.back-to-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Styles pour la deuxième page */
+.object-type.green .object-title {
+  color: #20bb43;
+}
+
+.object-type.red .object-title {
+  color: #d25658;
+}
+
+.object-type.white .object-title {
+  color: white;
+}
+
+/* Media Queries pour la responsivité */
+@media screen and (max-width: 1200px) {
+  .content {
+    max-width: 95%;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .objects-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin: 50px 0 30px 0;
+  }
+
+  .object-type {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .tutorial-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .content h1 {
+    font-size: 48px;
+  }
+
+  .object-title {
+    font-size: 2rem;
+  }
+
+  .sub-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gf-image {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .content h1 {
+    font-size: 36px;
+  }
+
+  .game-description p {
+    font-size: 1.8rem;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .navigation-buttons .back-button,
+  .navigation-buttons .next-button {
+    font-size: 28px;
+    padding: 8px 20px;
+  }
+
+  .object-title {
+    font-size: 1.8rem;
+  }
+
+  .sub-text {
+    font-size: 1.2rem;
+  }
+
+  .tutorial-image {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .content h1 {
+    font-size: 32px;
+  }
+
+  .game-description p {
+    font-size: 1.5rem;
+  }
+
+  .navigation-buttons .back-button,
+  .navigation-buttons .next-button {
+    font-size: 24px;
+    padding: 6px 16px;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .content {
+    margin-top: 10px;
+  }
+
+  .content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  .game-description p {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .gf-image {
+    width: 300px;
+    margin-top: 30px;
+  }
+
+  .objects-container {
+    margin: 50px 0 20px 0;
+  }
+
+  .object-type {
+    width: 250px;
+  }
+
+  .tutorial-image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .content {
+    margin-top: 5px;
+  }
+
+  .content h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+
+  .game-description p {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .gf-image {
+    width: 250px;
+    margin-top: 20px;
+  }
+
+  .objects-container {
+    margin: 30px 0 15px 0;
+  }
+
+  .object-type {
+    width: 200px;
+  }
+
+  .tutorial-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .navigation-buttons {
+    margin-top: 30px;
+  }
+
+  .navigation-buttons .back-button,
+  .navigation-buttons .next-button {
+    font-size: 28px;
+    padding: 8px 20px;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .content h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .game-description p {
+    font-size: 1.5rem;
+  }
+
+  .gf-image {
+    width: 200px;
+    margin-top: 15px;
+  }
+
+  .objects-container {
+    margin: 20px 0 10px 0;
+  }
+
+  .object-type {
+    width: 180px;
+  }
+
+  .tutorial-image {
+    width: 130px;
+    height: 130px;
+  }
+
+  .navigation-buttons {
+    margin-top: 20px;
+  }
+
+  .navigation-buttons .back-button,
+  .navigation-buttons .next-button {
+    font-size: 24px;
+    padding: 6px 16px;
+  }
+}
+
+/* Styles pour la page 3 */
+.main-description {
+  font-size: 2.5rem;
+  color: #fff;
+  font-family: "HorrorBrush", cursive;
+}
+
+.object-type.yellow .object-title {
+  color: #ffd700;
+}
+
+/* Ajustement pour deux objets au lieu de trois */
+.objects-container.two-items {
+  justify-content: center;
+  gap: 100px; /* Plus d'espace entre deux éléments */
+}
+
+/* Media queries pour la page 3 */
+@media screen and (max-width: 900px) {
+  .main-description {
+    font-size: 2rem;
+    margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main-description {
+    font-size: 1.8rem;
+    margin: 15px 0;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .main-description {
+    font-size: 1.8rem;
+    margin: 10px 0;
+  }
+}
+
+/* Styles pour la page 4 */
+.video-container {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tutorial-video {
+  max-width: 200px;
+  width: 100%;
+  border-radius: 30px;
+}
+
+/* Media queries pour la page 4 */
+@media screen and (max-width: 900px) {
+  .tutorial-video {
+    max-width: 350px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tutorial-video {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .video-container {
+    margin: 30px 0;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .video-container {
+    margin: 20px 0;
+  }
+}

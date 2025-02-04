@@ -1,0 +1,235 @@
+/* Classes de base pour la photo de profil */
+#chatSection .profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+#chatSection .profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* État: No Stress */
+#chatSection.no-stress .profile-picture {
+  border: 2px solid #607ab1;
+}
+
+#chatSection.no-stress .chat-name {
+  color: #333;
+}
+
+/* État: Low Stress - Animation de pulsation modérée */
+#chatSection.low-stress .profile-picture {
+  border: 2px solid #ffa500;
+  animation: lowStressPulse 1.5s infinite;
+  box-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
+}
+
+#chatSection.low-stress .chat-name {
+  animation: lowStressTextPulse 1.5s infinite;
+}
+
+#chatSection.low-stress #chatHistory .ai-message {
+  background-color: #ffa500;
+  color: #ffffff;
+  animation: lowStressMessagePulse 2s infinite,
+    lowStressMessageScale 1.5s infinite;
+  border: 1px solid #ffa500;
+}
+
+@keyframes lowStressPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 10px 3px rgba(255, 165, 0, 0.5);
+    transform: scale(1.03);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes lowStressTextPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lowStressMessagePulse {
+  0% {
+    background-color: #ffa500;
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.3);
+  }
+  50% {
+    background-color: #ffb733;
+    box-shadow: 0 0 8px 0 rgba(255, 165, 0, 0.4);
+  }
+  100% {
+    background-color: #ffa500;
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.3);
+  }
+}
+
+@keyframes lowStressMessageScale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* État: Very Stress - Animation de pulsation intense */
+#chatSection.very-stress {
+  background-color: #1a1a1a;
+  transition: background-color 0.3s ease;
+}
+
+#chatSection.very-stress #chatHeader {
+  background-color: #1a1a1a;
+  transition: background-color 0.3s ease;
+}
+
+#chatSection.very-stress .profile-picture {
+  border: 3px solid #ff0000;
+  animation: veryStressPulse 0.8s infinite;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+#chatSection.very-stress .chat-name {
+  color: #ff0000;
+  animation: veryStressTextPulse 0.8s infinite;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+#chatSection.very-stress #chatHistory {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+#chatSection.very-stress #chatHistory .ai-message {
+  background-color: #e92626;
+  color: #ffffff;
+  animation: messageShake 0.8s infinite ease-in-out, messageRedPulse 1.5s infinite;
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+  transform-origin: center;
+}
+
+#chatSection.very-stress #chatHistory .assistant-message {
+  background-color: #2d2d2d;
+  color: #ff9999;
+  border: 1px solid #ff0000;
+  animation: assistantMessageShake 1.5s infinite ease-in-out;
+  transform-origin: center;
+}
+
+#chatSection.very-stress #chatControls {
+  background-color: #1a1a1a;
+}
+
+#chatSection.very-stress #prompt {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+#chatSection.very-stress .chat-name::after {
+  content: "💀💀";
+}
+
+#chatSection.very-stress .chat-name span {
+  display: none;
+}
+
+@keyframes veryStressPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes veryStressTextPulse {
+  0% {
+    text-shadow: 0 0 0 rgba(255, 0, 0, 0);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    transform: scale(1.08);
+  }
+  100% {
+    text-shadow: 0 0 0 rgba(255, 0, 0, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes messageShake {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-2px, 1px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translate(0, -1px) rotate(0.5deg);
+  }
+  75% {
+    transform: translate(2px, 1px) rotate(-0.25deg);
+  }
+}
+
+@keyframes messageRedPulse {
+  0% {
+    background-color: #e92626;
+    box-shadow: 0 0 0 0 rgba(233, 38, 38, 0.4);
+  }
+  50% {
+    background-color: #ff3333;
+    box-shadow: 0 0 10px 0 rgba(233, 38, 38, 0.6);
+  }
+  100% {
+    background-color: #e92626;
+    box-shadow: 0 0 0 0 rgba(233, 38, 38, 0.4);
+  }
+}
+
+@keyframes assistantMessageShake {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-1px, 0.5px) rotate(-0.25deg);
+  }
+  50% {
+    transform: translate(0, -0.5px) rotate(0.25deg);
+  }
+  75% {
+    transform: translate(1px, 0.5px) rotate(-0.125deg);
+  }
+}

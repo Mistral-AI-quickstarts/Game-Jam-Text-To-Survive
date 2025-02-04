@@ -1,0 +1,566 @@
+  /* Layout */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    background-color: #220a0a;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+* {
+    opacity: 0.98;
+}
+#gameContainer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+    z-index: 1;
+    align-items: center;
+}
+
+#mapSection {
+    flex: 1;
+    min-width: 600px;
+    width: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    z-index: 2;
+    padding: 20px;
+}
+
+/* We'll place the P5 canvas in here */
+.map-wrapper {
+    margin: 20px;
+    transform-origin: center center;
+    min-width: min-content;
+}
+
+#chatSection {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #000000;
+    border-radius: 38px;
+    overflow: hidden;
+}
+
+#chatHistory {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    background: #f8f8fa;
+}
+
+/* Style moderne pour la barre de scroll */
+#chatHistory::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chatHistory::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#chatHistory::-webkit-scrollbar-thumb {
+    background: #d1d1d6;
+    border-radius: 3px;
+}
+
+#chatControls {
+    padding: 16px;
+    background: #ffffff;
+    display: flex;
+    gap: 12px;
+    border-top: 1px solid #f1f1f5;
+}
+
+.chat-message {
+    padding: 12px 16px;
+    margin: 6px 0;
+    border-radius: 20px;
+    max-width: 75%;
+    font-size: 0.95em;
+    line-height: 1.4;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.user-message {
+    background: #007aff;
+    color: white;
+    margin-left: auto;
+    border-radius: 20px 20px 4px 20px;
+}
+
+.assistant-message {
+    background: #f1f1f5;
+    color: #000000;
+    margin-right: auto;
+    border-radius: 20px 20px 20px 4px;
+}
+
+input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 0.95em;
+    background: #f1f1f5;
+    transition: background 0.2s;
+}
+
+input:focus {
+    outline: none;
+    background: #e5e5ea;
+}
+
+input::placeholder {
+    color: #8e8e93;
+}
+
+button {
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Style moderne pour l'indicateur de chargement */
+.loading-dots {
+    display: inline-flex;
+    gap: 4px;
+    padding: 8px 12px;
+    background: #f1f1f5;
+    border-radius: 16px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: #8e8e93;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* Modal for API key (if needed) */
+#apiKeyModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+#apiKey {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+}
+
+/* Modifier les styles du chat et du mockup */
+.phone-mockup {
+    position: relative;
+    width: 400px;
+    height: 800px;
+    background: url("/static/assets/img/phone.png") no-repeat center;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 35px 0;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.phone-screen {
+    width: 90%;
+    height: 96.5%;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Update media queries for better responsiveness */
+@media (max-height: 900px) {
+    .phone-mockup {
+        width: 350px;
+        height: 700px;
+    }
+}
+
+@media (max-height: 700px) {
+    .phone-mockup {
+        width: 300px;
+        height: 600px;
+    }
+}
+
+@media (max-width: 1200px) {
+    #mapSection {
+        flex: none;
+        width: fit-content;
+    }
+}
+
+@media (max-width: 900px) {
+    #mapSection {
+        flex: none;
+        width: fit-content;
+    }
+    .phone-mockup {
+        min-width: 280px;
+    }
+}
+
+/* Ajouter les nouveaux styles pour l'en-tête du chat */
+#chatHeader {
+    padding: 16px;
+    justify-content: center;
+    background: #ffffff;
+    border-bottom: 1px solid #f1f1f5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f1f1f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* LED Bar */
+.led-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 0, 0, 0.4) 20%,
+            rgba(255, 0, 0, 0.8) 35%,
+            rgba(255, 50, 50, 1) 50%,
+            rgba(255, 0, 0, 0.8) 65%,
+            rgba(255, 0, 0, 0.4) 80%,
+            transparent 100%);
+    z-index: 100;
+    animation: ledFlicker 4s infinite, ledPulse 10s infinite;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7),
+        0 0 35px rgba(255, 0, 0, 0.5),
+        0 0 50px rgba(255, 0, 0, 0.4),
+        0 0 70px rgba(155, 0, 0, 0.3);
+    filter: blur(0.6px);
+}
+
+.light-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(180deg,
+            rgba(255, 0, 0, 0.3) 0%,
+            rgba(255, 0, 0, 0.2) 20%,
+            rgba(255, 0, 0, 0.15) 30%,
+            rgba(155, 0, 0, 0.08) 60%,
+            transparent 100%);
+    animation: beamFlicker 4s infinite;
+    pointer-events: none;
+    filter: blur(2px);
+}
+
+@keyframes ledFlicker {
+    0% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    96% {
+        opacity: 0.3;
+    }
+
+    97% {
+        opacity: 1;
+    }
+
+    98% {
+        opacity: 0.2;
+    }
+
+    99% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes ledPulse {
+    0% {
+        filter: brightness(1) blur(0.6px);
+    }
+
+    50% {
+        filter: brightness(1.3) blur(0.4px);
+    }
+
+    100% {
+        filter: brightness(1) blur(0.6px);
+    }
+}
+
+@keyframes beamFlicker {
+    0% {
+        opacity: 0.7;
+    }
+
+    95% {
+        opacity: 0.7;
+    }
+
+    96% {
+        opacity: 0.2;
+    }
+
+    97% {
+        opacity: 0.7;
+    }
+
+    98% {
+        opacity: 0.1;
+    }
+
+    99% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+/* Background Elements */
+.background-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blood {
+    position: absolute;
+    top: 94%;
+    opacity: 0.6;
+    transform: rotate(20deg);
+    right: 10%;
+}
+
+.blood-top-left {
+    top: 0;
+    left: 0;
+    width: 300px;
+}
+
+.blood-top-right {
+    top: 0;
+    right: 0;
+    width: 200px;
+    transform: rotate(20deg);
+}
+
+.splatter {
+    bottom: 20%;
+    left: 10%;
+    width: 200px;
+}
+
+.blood-bottom-right {
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    top: 90%;
+    left: 90%;
+    width: 200px;
+}
+
+/* Sound button styles */
+.sound-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.2s ease;
+}
+
+.sound-button:hover {
+    transform: scale(1.1);
+}
+
+.sound-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Update button styles */
+button {
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button img {
+    width: 15px;
+    height: 15px;
+    color: #ffffff;
+}
+
+.numpad-overlay {
+    position: fixed;
+    top: 50%;
+    right: 52%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+.toggle-numpad {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.numpad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 300px;
+    margin: 10px auto;
+}
+
+.numpad-key {
+    padding: 25px;
+    font-size: 27px;
+    border: 1px solid #444;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.numpad-key:hover {
+    background: #444;
+}
+
+.numpad-display {
+    text-align: center;
+    font-size: 24px;
+    margin: 10px;
+    letter-spacing: 5px;
+    color: white;
+}
+
+/* Update input styles */
+input {
+    border-radius: 10px;
+}

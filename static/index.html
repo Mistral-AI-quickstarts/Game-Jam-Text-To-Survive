@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text to Survive - A text based horror escape game</title>
+    <link rel="stylesheet" href="assets/css/index-style.css" />
+  </head>
+  <body>
+    <div class="led-bar">
+      <div class="light-beam"></div>
+    </div>
+    <div class="background-elements">
+      <img src="assets/img/blood-2.png" alt="" class="blood blood-top-left" />
+      <img src="assets/img/help.png" alt="" class="blood blood-top-right" />
+      <img src="assets/img/splatter.png" alt="" class="blood splatter" />
+      <img src="assets/img/hand.png" alt="" class="blood blood-bottom-right" />
+    </div>
+
+    <main>
+      <div class="logo">
+        <img src="assets/img/logo.svg" alt="Through Their Eyes" />
+        <p class="subtitle">A text-based horror escape game</p>
+      </div>
+
+      <nav class="menu">
+        <a href="game/index.html" class="menu-item new-game">NEW GAME</a>
+        <a href="howto/how-to-play.html" class="menu-item how-to-play">HOW TO PLAY</a>
+        <a href="credits.html" class="menu-item credits">CREDITS</a>
+      </nav>
+      <div class="character">
+        <a href="howto/how-to-play.html">
+          <img src="assets/img/perso.png" alt="Character" />
+        </a>
+      </div>
+    </main>
+
+    <div class="sound-button" onclick="toggleSound()">
+      <img
+        src="/static/assets/img/sondon.png"
+        alt="Sound control"
+        id="soundIcon"
+      />
+    </div>
+
+    <audio id="bgMusic" loop>
+      <source src="/static/assets/sounds/music.mp3" type="audio/mp3" />
+    </audio>
+
+    <script>
+      // Définir isSoundOn comme true par défaut
+      let isSoundOn = true; // Toujours commencer avec le son activé
+      const soundIcon = document.getElementById("soundIcon");
+      const bgMusic = document.getElementById("bgMusic");
+
+      window.addEventListener("DOMContentLoaded", () => {
+        // Vérifier si c'est la première visite
+        if (localStorage.getItem("isSoundOn") === null) {
+          // Première visite : initialiser avec le son activé
+          localStorage.setItem("isSoundOn", "true");
+        } else {
+          // Visites suivantes : récupérer l'état précédent
+          isSoundOn = localStorage.getItem("isSoundOn") === "true";
+        }
+
+        // Mettre à jour l'icône
+        updateSoundIcon();
+
+        try {
+          bgMusic.currentTime = 10;
+          // Jouer la musique si le son est activé
+          if (isSoundOn) {
+            bgMusic.play().catch((error) => {
+              console.log("Autoplay prevented:", error);
+              isSoundOn = false;
+              localStorage.setItem("isSoundOn", "false");
+              updateSoundIcon();
+            });
+          }
+        } catch (error) {
+          console.error("Error playing audio:", error);
+        }
+      });
+
+      function toggleSound() {
+        isSoundOn = !isSoundOn;
+        localStorage.setItem("isSoundOn", isSoundOn.toString());
+
+        if (isSoundOn) {
+          if (bgMusic.currentTime < 10) {
+            bgMusic.currentTime = 10;
+          }
+          bgMusic.play();
+        } else {
+          bgMusic.pause();
+        }
+        updateSoundIcon();
+      }
+
+      function updateSoundIcon() {
+        soundIcon.src = isSoundOn
+          ? "/static/assets/img/sondon.png"
+          : "/static/assets/img/soundoff.png";
+      }
+    </script>
+  </body>
+</html>

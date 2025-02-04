@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text to Survive - A text based horror escape game</title>
+    <link rel="stylesheet" href="/static/assets/css/game-style.css" />
+    <link rel="stylesheet" href="/static/assets/css/stress-animations.css" />
+    <link rel="stylesheet" href="/static/assets/css/popup.css" />
+  </head>
+
+  <body>
+    <div class="led-bar">
+      <div class="light-beam"></div>
+    </div>
+    <div class="background-elements">
+      <img
+        src="/static/assets/img/blood-2.png"
+        alt=""
+        class="blood blood-top-left"
+      />
+      <img
+        src="/static/assets/img/help.png"
+        alt=""
+        class="blood blood-top-right"
+      />
+      <img
+        src="/static/assets/img/splatter.png"
+        alt=""
+        class="blood splatter"
+      />
+      <img
+        src="/static/assets/img/hand.png"
+        alt=""
+        class="blood blood-bottom-right"
+      />
+    </div>
+    <div id="gameContainer">
+      <div id="mapSection">
+        <div id="mapWrapper" class="map-wrapper">
+          <!-- P5.js canvas goes here -->
+        </div>
+      </div>
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div id="chatSection">
+            <div id="chatHeader">
+              <div class="profile-picture">
+                <img src="/assets/img/profil_pictures/no_stress.webp" alt="Profile Picture">
+              </div>
+              <div class="chat-name">Bae 💖😘</div>
+            </div>
+            <div id="chatHistory"></div>
+            <div id="chatControls">
+              <input
+                type="text"
+                id="prompt"
+                autocomplete="off"
+                placeholder="Type your message..."
+              />
+              <button onclick="sendMessage()">
+                <svg
+                  width="683"
+                  height="683"
+                  viewBox="0 0 683 683"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22.2666 1.86666C19.5999 2.93333 16.5333 4.39999 15.4666 5.19999C11.9999 8.13333 9.33325 15.7333 9.33325 22.5333C9.33325 28.1333 65.4666 283.333 66.9333 284.667C67.3333 285.067 339.333 332.267 372.4 337.733C381.733 339.333 389.333 340.933 389.333 341.333C389.333 341.733 381.733 343.333 372.4 344.933C339.2 350.4 67.3333 397.6 66.9333 398C65.4666 399.333 9.33325 654.533 9.33325 660.133C9.33325 675.867 21.0666 685.333 35.8666 681.333C42.6666 679.467 662.267 362 666.4 358.133C671.333 353.733 673.333 348.8 673.333 341.333C673.333 333.867 671.333 328.933 666.4 324.533C662.533 320.933 43.0666 3.19999 36.2666 1.33333C29.9999 -0.400007 28.5333 -0.266674 22.2666 1.86666Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sound-button" onclick="toggleSound()">
+      <img
+        src="/static/assets/img/sondon.png"
+        alt="Sound control"
+        id="soundIcon"
+      />
+    </div>
+
+    <audio id="bgMusic" loop>
+      <source src="/static/assets/sounds/music.mp3" type="audio/mp3" />
+    </audio>
+
+    <audio id="messageSound">
+      <source src="/static/assets/sounds/message.wav" type="audio/wav" />
+    </audio>
+
+    <div class="popup-overlay" style="display: none;"></div>
+    <div class="popup-loser" style="display: none;">
+      <div class="title-glow"></div>
+      <h1 class="title">SHE DIED!</h1>
+      <button class="play-again">Play Again</button>
+      <img src="/static/assets/img/blood-2.png" alt="" class="blood-top" />
+      <img src="/static/assets/img/popup/clown_lose.png" alt="" class="clown" />
+      <img src="/static/assets/img/blood-2.png" alt="" class="blood-bottom" />
+    </div>
+
+    <div class="popup-winner" style="display: none;">
+      <img src="/static/assets/img/popup/text.svg" alt="" class="win-text" />
+      <img src="/static/assets/img/popup/fuck.png" alt="" class="fuck" />
+      <img src="/static/assets/img/popup/stars1.png" alt="" class="stars1" />
+      <img src="/static/assets/img/popup/stars2.png" alt="" class="stars2" />
+      <button class="play-again">Play Again</button>
+    </div>
+
+    <script>
+      function winGameModal() {
+        document.querySelector('.popup-overlay').style.display = 'block';
+        document.querySelector('.popup-winner').style.display = 'block';
+        document.querySelector('.popup-loser').style.display = 'none';
+      }
+
+      function loseGameModal() {
+        document.querySelector('.popup-overlay').style.display = 'block';
+        document.querySelector('.popup-loser').style.display = 'block';
+        document.querySelector('.popup-winner').style.display = 'none';
+      }
+
+      // Add click handlers for play again buttons
+      document.querySelectorAll('.play-again').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelector('.popup-overlay').style.display = 'none';
+          document.querySelector('.popup-winner').style.display = 'none';
+          document.querySelector('.popup-loser').style.display = 'none';
+          location.reload(); // Reload the page to restart the game
+        });
+      });
+
+      // Global function to set stress level
+      function setStressLevel(level) {
+        const chatSection = document.getElementById('chatSection');
+        const profilePicture = chatSection.querySelector('.profile-picture img');
+        
+        // Remove all existing stress classes
+        chatSection.classList.remove('no-stress', 'low-stress', 'very-stress');
+        
+        // Add the appropriate class based on stress level
+        switch(level) {
+          case 'no':
+            chatSection.classList.add('no-stress');
+            if (profilePicture) {
+              profilePicture.src = '/assets/img/profil_pictures/no_stress.webp';
+            }
+            break;
+          case 'low':
+            chatSection.classList.add('low-stress');
+            if (profilePicture) {
+              profilePicture.src = '/assets/img/profil_pictures/low_stress.webp';
+            }
+            break;
+          case 'very':
+            chatSection.classList.add('very-stress');
+            if (profilePicture) {
+              profilePicture.src = '/assets/img/profil_pictures/very_stress.webp';
+            }
+            break;
+          default:
+            console.error('Invalid stress level:', level);
+        }
+      }
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/addons/p5.sound.min.js" "></script>
+    <script src="/static/game/elmnts/furniture.js"></script>
+    <script src="/static/game/gameState.js"></script>
+    <script src="/static/game/mistral.js"></script>
+    <script src="/static/game/elmnts/character.js"></script>
+    <script src="/static/game/elmnts/girlfriend.js"></script>
+    <script src="/static/game/elmnts/clown.js"></script>
+    <script src="/static/game/elmnts/grid.js"></script>
+    <script src="/static/game/elmnts/apt.js"></script>
+    <script src="/static/game/utilities/sound.js"></script>
+    <script src="/static/game/utilities/helpers.js"></script>
+    <script src="/static/game/utilities/chat.js"></script>
+    <script src="/static/game/utilities/draw.js"></script>
+    <script src="/static/game/game.js"></script>
+
+  
+  </body>
+</html>
