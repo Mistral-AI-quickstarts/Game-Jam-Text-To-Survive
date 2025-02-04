@@ -17,6 +17,18 @@ This game was built for the Mistral AI Gamejam Hackathon 2025 in Paris.
 
 It combines basic 2D game mechanics with a large language model to create a unique and engaging experience.
 
+## Authors
+
+| Name | Links |
+|------|-------|
+| Johnny Moacdieh | [LinkedIn](https://www.linkedin.com/in/johnny-moacdieh-935687b3/) • [Website](http://johnnym.dev/) |
+| Carl Farra | [LinkedIn](https://www.linkedin.com/in/carlfarra/) • [Website](https://rpsdaily.com/) |
+| Remi Kaito | [LinkedIn](https://www.linkedin.com/in/remikaito/) • [X/Twitter](https://x.com/mrrremi) |
+| Cosimo Taiuti | [LinkedIn](https://www.linkedin.com/in/cosimotaiuti/) |
+| Joseph "Tonic" Pollack | [LinkedIn](https://www.linkedin.com/in/josephpollack/) • [HuggingFace](https://huggingface.co/Tonic) |
+| Luca Teodorescu | [LinkedIn](https://www.linkedin.com/in/luca-teodorescu/) |
+
+
 ## Technical Stack
 
 ### Backend
@@ -60,16 +72,6 @@ docker run -p 8000:8000 p5js-game
 ```
 
 
-## Authors
-
-| Name | Links |
-|------|-------|
-| Johnny Moacdieh | [LinkedIn](https://www.linkedin.com/in/johnny-moacdieh-935687b3/) • [Website](http://johnnym.dev/) |
-| Carl Farra | [LinkedIn](https://www.linkedin.com/in/carlfarra/) • [Website](https://rpsdaily.com/) |
-| Remi Kaito | [LinkedIn](https://www.linkedin.com/in/remikaito/) • [X/Twitter](https://x.com/mrrremi) |
-| Cosimo Taiuti | [LinkedIn](https://www.linkedin.com/in/cosimotaiuti/) |
-| Joseph "Tonic" Pollack | [LinkedIn](https://www.linkedin.com/in/josephpollack/) • [HuggingFace](https://huggingface.co/Tonic) |
-| Luca Teodorescu | [LinkedIn](https://www.linkedin.com/in/luca-teodorescu/) |
 
 
 
