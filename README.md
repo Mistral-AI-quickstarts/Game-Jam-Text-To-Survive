@@ -52,6 +52,10 @@ Once you have your API key, you can set it as an environment variable:
 
 ```bash
 export MISTRAL_API_KEY=<your_api_key>
+```
+
+## Run locally
+
 ```bash
 python app.py
 ```
