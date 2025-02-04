@@ -11,7 +11,19 @@ pinned: false
 
 # Text to Survive - A Text-Based Horror Escape Game
 
-An interactive horror escape game where your messages determine the fate of others.
+An 2D game built with p5.js and Mistral AI API. The game revolves around a girlfriend who is trapped in an appartment with a murderous clown that is chasing her. The player must help her navigate the appartment and find the key to escape by texting her instructions.
+
+This game was built for the Mistral AI Gamejam Hackathon 2025 in Paris.
+
+## Technical Stack
+
+### Backend
+- **Flask**: Python web framework serving as proxy to mistral api
+- **Mistral AI API**: Large Language Model powering the texting interface and girlfriend decision making
+
+### Frontend
+- **Vanilla JavaScript**: Core game logic and user interactions
+- **P5.js**: Creative coding library used for visual effects and animations
 
 ### Docker
 
